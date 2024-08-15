@@ -1,0 +1,39 @@
+import pickle
+import tkinter as tk
+from tkinter import Label, Text, Button, messagebox
+
+# Load the Naive Bayes classifier from the pickle file
+with open('C:\\Users\\keert\\Desktop\\imdb\\picklee.pkl', 'rb') as file:
+    nb_classifier = pickle.load(file)
+
+# Create a function to analyze sentiment
+def analyze_sentiment():
+    review = input_text.get("1.0", "end-1c")
+    review_tfidf = tfidf_vectorizer.transform([review])
+    sentiment = nb_classifier.predict(review_tfidf)
+
+    if sentiment[0] == 1:
+        result = "Positive"
+    else:
+        result = "Negative"
+
+    result_label.config(text=f"Sentiment: {result}")
+
+# Create a Tkinter window
+window = tk.Tk()
+window.title("Sentiment Analysis")
+
+# Create Text widget for input
+input_text = Text(window, height=10, width=40)
+input_text.pack()
+
+# Create a button to analyze sentiment
+analyze_button = Button(window, text="Analyze Sentiment", command=analyze_sentiment)
+analyze_button.pack()
+
+# Create a label for the result
+result_label = Label(window, text="")
+result_label.pack()
+
+# Run the Tkinter main loop
+window.mainloop()

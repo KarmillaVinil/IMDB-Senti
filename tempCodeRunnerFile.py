@@ -1,0 +1,1 @@
+r'C:\Users\keert\Desktop\imdb\imdb\dataset\Train.csv'
